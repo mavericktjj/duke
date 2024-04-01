@@ -22,7 +22,6 @@ public class Ui {
     }
 
 
-
     /**
      * Displays the list of tasks.w
      *
@@ -43,8 +42,8 @@ public class Ui {
     /**
      * Displays a message indicating that a task has been added.
      *
-     * @param task        The task that has been added.
-     * @param totalTasks  The total number of tasks after adding the new task.
+     * @param task       The task that has been added.
+     * @param totalTasks The total number of tasks after adding the new task.
      */
     public void showTaskAdded(Task task, int totalTasks) {
         System.out.println("Got it. I've added this task:");
@@ -72,6 +71,7 @@ public class Ui {
         System.out.println("Noted. I've removed this task:");
         System.out.printf("Now you have %d tasks in the list.\n", remainingTasks);
     }
+
     /**
      * Displays a goodbye message when the application exits.
      */
@@ -95,7 +95,6 @@ public class Ui {
     public void showDuplicateMessage() {
         System.out.println("Description already exists in the list");
     }
-
 
 
 }

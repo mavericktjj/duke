@@ -1,4 +1,3 @@
-
 /**
  * Utility class for handling errors and performing validation checks in the Duke application.
  */

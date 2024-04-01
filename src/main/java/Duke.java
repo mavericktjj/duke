@@ -49,9 +49,8 @@ public class Duke {
                 break;
             }
             if (input.equals("help")) {
-                 helpPage.show();
-            }
-            else {
+                helpPage.show();
+            } else {
                 Command command = Parser.parse(input);
                 command.execute(taskList, ui, storage);
             }
@@ -61,9 +60,6 @@ public class Duke {
 //        storage.saveTasks(taskList);
         ui.showGoodbyeMessage();
     }
-
-
-
 
 
     /**

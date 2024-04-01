@@ -1,4 +1,3 @@
-
 /**
  * Represents a command to list all tasks in the Duke application.
  * Implements the Command interface.
@@ -18,8 +17,6 @@ public class ListCommand implements Command {
 
         ui.showTaskList(taskList);
     }
-
-
 
 
 }

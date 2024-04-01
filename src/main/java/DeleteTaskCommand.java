@@ -1,4 +1,3 @@
-
 public class DeleteTaskCommand implements Command {
     private final int index;
 
@@ -32,4 +31,4 @@ public class DeleteTaskCommand implements Command {
             ErrorHandling.outOfRange();
         }
     }
-    }
+}

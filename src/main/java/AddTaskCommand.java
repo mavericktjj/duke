@@ -1,4 +1,3 @@
-
 public class AddTaskCommand implements Command {
     private final Task task;
 

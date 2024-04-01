@@ -1,4 +1,3 @@
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
@@ -23,11 +22,9 @@ public class Parser {
                     try {
                         LocalDate date = parseDate(tokens[1]);
                         return new FindCommand(date);
-                    }
-                    catch (DateTimeParseException e1) {
+                    } catch (DateTimeParseException e1) {
                         return new FindCommand(argument);
-                    }
-                    catch (ArrayIndexOutOfBoundsException e2) {
+                    } catch (ArrayIndexOutOfBoundsException e2) {
                         System.out.println("Please provide a valid search parameter.");
                     }
                 case "list":
@@ -72,11 +69,10 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             ErrorHandling.wrongSyntax();
             return new InvalidCommand();
-        }
-            catch (NumberFormatException e1) {
-                return new InvalidCommand();
+        } catch (NumberFormatException e1) {
+            return new InvalidCommand();
 
-            }
+        }
     }
 
     /**
@@ -136,13 +132,7 @@ public class Parser {
      * @throws DateTimeParseException If the date string cannot be parsed.
      */
     public static LocalDateTime parseDateTime(String date) throws DateTimeParseException {
-        List<String> dateTimePatterns = new ArrayList<>(List.of(
-                "M/d/yyyy HHmm",
-                "MM/dd/yyyy HHmm",
-                "yyyy-MM-dd HHmm",
-                "HHmm dd/MM/yyyy",
-                "dd/MM/yyyy HHmm"
-        ));
+        List<String> dateTimePatterns = new ArrayList<>(List.of("M/d/yyyy HHmm", "MM/dd/yyyy HHmm", "yyyy-MM-dd HHmm", "HHmm dd/MM/yyyy", "dd/MM/yyyy HHmm"));
         try {
             for (String pattern : dateTimePatterns) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH);
@@ -162,16 +152,7 @@ public class Parser {
      * @throws DateTimeParseException If the date string cannot be parsed.
      */
     public static LocalDate parseDate(String date) throws DateTimeParseException {
-        List<String> datePatterns = List.of(
-                "MM/dd/yyyy",
-                "MMMM dd yyyy",
-                "dd MMMM yyyy",
-                "yyyy MMMM dd",
-                "yyyy/MM/dd",
-                "yyyy-MM-dd",
-                "dd/MM/yyyy",
-                "dd/M/yyyy"
-        );
+        List<String> datePatterns = List.of("MM/dd/yyyy", "MMMM dd yyyy", "dd MMMM yyyy", "yyyy MMMM dd", "yyyy/MM/dd", "yyyy-MM-dd", "dd/MM/yyyy", "dd/M/yyyy");
         for (String pattern : datePatterns) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH);

@@ -1,6 +1,4 @@
 public enum TaskType {
-    TODO,
-    EVENT,
-    DEADLINE
+    TODO, EVENT, DEADLINE
 
 }

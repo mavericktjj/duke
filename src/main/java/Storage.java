@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,12 +22,11 @@ public class Storage {
     }
 
 
-
     /**
      * Loads tasks from a file and adds them to the given task list.
      *
-     * @param filePath  The file path to load tasks from.
-     * @param taskList  The task list to which loaded tasks will be added.
+     * @param filePath The file path to load tasks from.
+     * @param taskList The task list to which loaded tasks will be added.
      */
 
     public static void loadTasksFromFile(String filePath, TaskList taskList) {
@@ -41,8 +39,6 @@ public class Storage {
                     taskList.add(task);
 
 
-
-
                 }
             } catch (IOException e) {
                 System.out.println("Error reading the file");
@@ -51,9 +47,6 @@ public class Storage {
 
 
     }
-
-
-
 
 
     /**

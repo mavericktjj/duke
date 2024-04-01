@@ -1,5 +1,4 @@
-
-public class Task  {
+public class Task {
     protected String description;
 
     protected TaskType type;

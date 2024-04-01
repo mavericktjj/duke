@@ -64,8 +64,7 @@ public class FindCommand implements Command {
                         LocalDate fromDate = ((Event) taskList.get(i)).startTime.toLocalDate();
                         LocalDate toDate = ((Event) taskList.get(i)).endTime.toLocalDate();
                         LocalDate date = (LocalDate) this.searchParameter;
-                        boolean isInRange = (date.isEqual(fromDate) || date.isAfter(fromDate))
-                                && (date.isEqual(toDate) || date.isBefore(toDate));
+                        boolean isInRange = (date.isEqual(fromDate) || date.isAfter(fromDate)) && (date.isEqual(toDate) || date.isBefore(toDate));
 
                         if (isInRange) {
                             matchedTasks.add(taskList.get(i));
