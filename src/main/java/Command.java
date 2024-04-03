@@ -12,7 +12,8 @@ public interface Command {
      * @param taskList The task list on which the command will operate.
      * @param ui       The user interface to display messages or interact with the user.
      * @param storage  The storage to read from or write to, if necessary.
+     * @return
      */
 
-    void execute(TaskList taskList, Ui ui, Storage storage);
+    String execute(TaskList taskList, Ui ui, Storage storage);
 }

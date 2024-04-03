@@ -30,8 +30,9 @@ public class FindCommand implements Command {
      * @param taskList The TaskList containing all tasks.
      * @param ui       The Ui object for interacting with the user.
      * @param storage  The Storage object for saving tasks to a file.
+     * @return
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         // Create a list to store matched tasks
         List<Task> matchedTasks = new ArrayList<>();
 
@@ -74,14 +75,20 @@ public class FindCommand implements Command {
             }
 
             // Display the matched tasks or a message indicating no matching tasks found
+            StringBuilder stringBuilder = new StringBuilder();
             if (!matchedTasks.isEmpty()) {
-                System.out.println("Matching tasks found:");
+                stringBuilder.append("Matching tasks found:\n");
                 for (int i = 0; i < matchedTasks.size(); i++) {
-                    System.out.printf("%d. %s\n", i + 1, matchedTasks.get(i));
+                    stringBuilder.append(String.format("%d. %s\n", i + 1, matchedTasks.get(i)));
                 }
+                return stringBuilder.toString();
             } else {
-                System.out.println("No matching tasks found.");
+                stringBuilder.append("No matching tasks found.");
+                return stringBuilder.toString();
             }
+
+
         }
+        return null;
     }
 }

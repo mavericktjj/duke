@@ -21,14 +21,18 @@ public class DeleteTaskCommand implements Command {
      * @param taskList The task list from which the task will be deleted.
      * @param ui       The user interface to display messages.
      * @param storage  The storage to save the updated task list.
+     * @return
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList.get(index-1) != null;
         try {
             Task deletedTask = taskList.remove(index - 1);
-            ui.showTaskDeleted(deletedTask, taskList.size());
+            String concat = ui.showTaskDeleted(deletedTask, taskList.size());
             storage.saveTasks(taskList);
+            return concat;
         } catch (IndexOutOfBoundsException e) {
             ErrorHandling.outOfRange();
         }
+        return null;
     }
 }

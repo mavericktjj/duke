@@ -23,15 +23,19 @@ public class MarkAsDoneCommand implements Command {
      * @param taskList The task list containing the task to be marked as done.
      * @param ui       The user interface to display messages.
      * @param storage  The storage to save the updated task list.
+     * @return
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList.get(index-1) != null : "Task does not exist!";
         try {
             Task task = taskList.get(index - 1);
             task.markAsDone();
-            ui.showTaskMarkedAsDone(task);
+            String concat = ui.showTaskMarkedAsDone(task);
             storage.saveTasks(taskList);
+            return concat;
         } catch (IndexOutOfBoundsException e) {
             ErrorHandling.outOfRange();
         }
+        return null;
     }
 }

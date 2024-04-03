@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +18,7 @@ public class Event extends Task {
      */
     public Event(String description, LocalDateTime startTime, LocalDateTime endTime) {
         super(description, TaskType.EVENT);
+        assert endTime.isAfter(startTime) : "End time must be after start time";
         this.startTime = startTime;
         this.endTime = endTime;
     }

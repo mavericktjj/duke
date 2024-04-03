@@ -14,10 +14,12 @@ public class InvalidCommand implements Command {
      * @param taskList The task list (not used).
      * @param ui       The user interface to display the invalid command message.
      * @param storage  The storage (not used).
+     * @return
      */
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showInvalidCommandMessage();
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.showInvalidCommandMessage();
+
     }
 }
