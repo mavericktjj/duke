@@ -30,65 +30,67 @@ public class FindCommand implements Command {
      * @param taskList The TaskList containing all tasks.
      * @param ui       The Ui object for interacting with the user.
      * @param storage  The Storage object for saving tasks to a file.
-     * @return
+     * @return A string representing the result of the command execution.
      */
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        // Create a list to store matched tasks
-        List<Task> matchedTasks = new ArrayList<>();
+        List<Task> matchedTasks = findMatchingTasks(taskList);
 
-        // Sort the task list using a custom comparator
+        if (matchedTasks.isEmpty()) {
+            return "No matching tasks found.";
+        } else {
+            return formatMatchingTasks(matchedTasks);
+        }
+    }
+
+    /**
+     * Finds tasks in the task list that match the search parameter.
+     *
+     * @param taskList The TaskList containing all tasks.
+     * @return A list of tasks that match the search parameter.
+     */
+    private List<Task> findMatchingTasks(TaskList taskList) {
+        List<Task> matchedTasks = new ArrayList<>();
         taskList.tasks.sort(new TaskComparator());
 
-        // Check if the task list is empty
-        if (taskList.size() == 0) {
-            System.out.println("No tasks added yet.");
-        } else {
-            // Iterate through the task list to find matching tasks
-            for (int i = 0; i < taskList.size(); i++) {
-                if (searchParameter instanceof String) {
-                    // If the search parameter is a String, search by description
-                    String inputDescription = (String) this.searchParameter;
-                    if (taskList.get(i).description.contains(inputDescription)) {
-                        matchedTasks.add(taskList.get(i));
-                    }
-                }
-                if (searchParameter instanceof LocalDate) {
-                    // If the search parameter is a LocalDate, search by deadline or event date
-                    if (taskList.get(i) instanceof Deadline) {
-                        LocalDate date = (LocalDate) this.searchParameter;
-                        int comparison = date.compareTo(((Deadline) taskList.get(i)).by.toLocalDate());
-                        if (comparison == 0) {
-                            matchedTasks.add(taskList.get(i));
-                        }
-                    }
-                    if (taskList.get(i) instanceof Event) {
-                        LocalDate fromDate = ((Event) taskList.get(i)).startTime.toLocalDate();
-                        LocalDate toDate = ((Event) taskList.get(i)).endTime.toLocalDate();
-                        LocalDate date = (LocalDate) this.searchParameter;
-                        boolean isInRange = (date.isEqual(fromDate) || date.isAfter(fromDate)) && (date.isEqual(toDate) || date.isBefore(toDate));
-
-                        if (isInRange) {
-                            matchedTasks.add(taskList.get(i));
-                        }
-                    }
-                }
+        for (Task task : taskList.tasks) {
+            if (searchParameter instanceof String && task.description.contains((String) searchParameter)) {
+                matchedTasks.add(task);
+            } else if (searchParameter instanceof LocalDate && matchesDate(task)) {
+                matchedTasks.add(task);
             }
-
-            // Display the matched tasks or a message indicating no matching tasks found
-            StringBuilder stringBuilder = new StringBuilder();
-            if (!matchedTasks.isEmpty()) {
-                stringBuilder.append("Matching tasks found:\n");
-                for (int i = 0; i < matchedTasks.size(); i++) {
-                    stringBuilder.append(String.format("%d. %s\n", i + 1, matchedTasks.get(i)));
-                }
-                return stringBuilder.toString();
-            } else {
-                stringBuilder.append("No matching tasks found.");
-                return stringBuilder.toString();
-            }
-
-
         }
-        return null;
+        return matchedTasks;
+    }
+
+    /**
+     * Checks if the given task matches the search parameter's date.
+     *
+     * @param task The task to check.
+     * @return True if the task's date matches the search parameter, false otherwise.
+     */
+    private boolean matchesDate(Task task) {
+        LocalDate date = (LocalDate) searchParameter;
+        if (task instanceof Deadline) {
+            return date.isEqual(((Deadline) task).by.toLocalDate());
+        } else if (task instanceof Event) {
+            LocalDate fromDate = ((Event) task).startTime.toLocalDate();
+            LocalDate toDate = ((Event) task).endTime.toLocalDate();
+            return (date.isEqual(fromDate) || date.isAfter(fromDate)) && (date.isEqual(toDate) || date.isBefore(toDate));
+        }
+        return false;
+    }
+
+    /**
+     * Formats the list of matching tasks into a string.
+     *
+     * @param matchedTasks The list of matching tasks.
+     * @return A string representation of the matching tasks.
+     */
+    private String formatMatchingTasks(List<Task> matchedTasks) {
+        StringBuilder stringBuilder = new StringBuilder("Matching tasks found:\n");
+        for (int i = 0; i < matchedTasks.size(); i++) {
+            stringBuilder.append(String.format("%d. %s\n", i + 1, matchedTasks.get(i)));
+        }
+        return stringBuilder.toString();
     }
 }

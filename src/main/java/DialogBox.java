@@ -8,8 +8,8 @@ import javafx.scene.layout.HBox;
 
 public class DialogBox extends HBox {
 
-    private Label text;
-    private ImageView displayPicture;
+    private final Label text;
+    private final ImageView displayPicture;
 
     public DialogBox(Label l, ImageView iv) {
         text = l;
@@ -22,6 +22,7 @@ public class DialogBox extends HBox {
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(text, displayPicture);
     }
+
     private void flip() {
         this.setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());

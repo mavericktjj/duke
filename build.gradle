@@ -49,8 +49,17 @@ application {
     mainClass.set("Launcher")
 }
 
+//jar {
+//    manifest {
+//        attributes "Main-Class": "Launcher"
+//    }
+//
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Launcher"
     archiveClassifier = null
     dependsOn("distZip", "distTar")
 }

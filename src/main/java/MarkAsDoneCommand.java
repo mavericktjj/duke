@@ -34,8 +34,8 @@ public class MarkAsDoneCommand implements Command {
             storage.saveTasks(taskList);
             return concat;
         } catch (IndexOutOfBoundsException e) {
-            ErrorHandling.outOfRange();
+            return "Please enter a valid task number. ";
         }
-        return null;
+
     }
 }

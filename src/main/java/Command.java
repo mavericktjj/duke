@@ -1,6 +1,3 @@
-
-
-
 /**
  * The Command interface represents an action to be executed by the Duke application.
  * Implementing classes must define the execute method to perform the desired action.

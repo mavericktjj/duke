@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class JunitTest {
-//    @Test
-//    public void testInitialization() {
-//        Duke duke = new Duke("tasks.txt");
-//        assertNotNull(duke);
-//        assertNotNull(duke.ui);
-//        assertNotNull(duke.taskList);
-//        assertNotNull(duke.storage);
-//    }
+    @Test
+    public void testInitialization() {
+        Duke duke = new Duke();
+        assertNotNull(duke);
+        assertNotNull(duke.ui);
+        assertNotNull(duke.taskList);
+        assertNotNull(duke.storage);
+    }
 
 
     @Test

@@ -1,11 +1,14 @@
-
-
-
 /**
  * Represents a command to handle invalid user input in the Duke application.
  * Implements the Command interface.
  */
 public class InvalidCommand implements Command {
+
+    String errorMsg;
+
+    public InvalidCommand(String message) {
+        this.errorMsg = message;
+    }
 
     /**
      * Executes the command to handle invalid user input.
@@ -18,8 +21,8 @@ public class InvalidCommand implements Command {
      */
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
-        return ui.showInvalidCommandMessage();
+    public String execute(TaskList taskList, Ui ui, Storage stlorage) {
+        return ui.showInvalidCommandMessage(this.errorMsg);
 
     }
 }

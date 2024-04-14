@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * The Ui class handles interactions with the user interface of the application.
  */
@@ -29,6 +31,28 @@ public class Ui {
                 concat.append("\n").append(j).append(". ").append(taskList.get(i));
             }
             return concat.toString();
+        }
+    }
+
+    public String showTaskTypeList(TaskList taskList, TaskType type) {
+        taskList.tasks.sort(new TaskComparator());
+        boolean taskFound = false;
+        if (taskList.size() == 0) {
+            return ("No tasks added yet.");
+        } else {
+            StringBuilder concat = new StringBuilder("Tasks:");
+            for (int i = 0; i < taskList.size(); i++) {
+                int j = i + 1;
+                if (taskList.get(i).type == type) {
+                    concat.append("\n").append(j).append(". ").append(taskList.get(i));
+                    taskFound = true;
+                }
+            }
+            if (taskFound) {
+                return concat.toString();
+            } else {
+                return "No " + type + " tasks found.";
+            }
         }
     }
 
@@ -78,8 +102,8 @@ public class Ui {
      *
      * @return An invalid command message.
      */
-    public String showInvalidCommandMessage() {
-        return "Sorry, I don't understand that command.";
+    public String showInvalidCommandMessage(String errorMsg) {
+        return errorMsg;
     }
 
     /**
@@ -91,4 +115,7 @@ public class Ui {
         return "Description already exists in the list";
     }
 
+    public String showTaskUnmarkedAsDone(Task task) {
+        return "Nice! I've unmarked this task: " + "\n" + task;
+    }
 }

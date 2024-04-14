@@ -1,8 +1,17 @@
+import java.time.LocalDate;
+
 /**
  * Represents a command to list all tasks in the Duke application.
  * Implements the Command interface.
  */
 public class ListCommand implements Command {
+
+    private final TaskType type;
+
+    public ListCommand(TaskType type) {
+        this.type = type;
+
+    }
 
     /**
      * Executes the command to list all tasks.
@@ -15,8 +24,11 @@ public class ListCommand implements Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
+        if (this.type != null) {
+            return ui.showTaskTypeList(taskList, this.type);
 
-        return  ui.showTaskList(taskList);
+        }
+        return ui.showTaskList(taskList);
 
     }
 

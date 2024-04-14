@@ -24,15 +24,15 @@ public class DeleteTaskCommand implements Command {
      * @return
      */
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        assert taskList.get(index-1) != null;
+        assert taskList.get(index - 1) != null;
         try {
             Task deletedTask = taskList.remove(index - 1);
             String concat = ui.showTaskDeleted(deletedTask, taskList.size());
             storage.saveTasks(taskList);
             return concat;
         } catch (IndexOutOfBoundsException e) {
-            ErrorHandling.outOfRange();
+            return "Please enter a valid task number. ";
         }
-        return null;
+
     }
 }

@@ -18,15 +18,15 @@ public class Duke extends Application {
     final TaskList taskList;
     final Storage storage;
 
-    final String filePath = "C:\\Users\\Admin\\Documents\\GitHub\\javaFX\\src\\main\\java\\data\\tasks.txt";
+    final String filePath = "C:\\Users\\Admin\\Documents\\GitHub\\duke\\src\\main\\java\\data\\tasks.txt";
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
 
     public Duke() {
@@ -36,17 +36,21 @@ public class Duke extends Application {
         Storage.loadTasksFromFile(filePath, taskList);
         assert ui != null && taskList != null && storage != null : "Critical components must not be null";
     }
+
     private void handleUserInput() {
         assert userInput != null : "User input field must not be null";
-        if (userInput.getText().toLowerCase().equals("bye")) {
+        String response = "";
+        if (userInput.getText().equalsIgnoreCase("bye")) {
             // Terminate the application
             System.out.println("System is exiting..");
             System.exit(0);
 
+        } else if (userInput.getText().equalsIgnoreCase("help")) {
+            response = HelpPage.show();
+        } else {
+            Command command = Parser.parse(userInput.getText().toLowerCase());
+            response = command.execute(taskList, ui, storage);
         }
-        Command command = Parser.parse(userInput.getText().toLowerCase());
-        String response = command.execute(taskList, ui, storage);
-
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(response));
         dialogContainer.getChildren().addAll(
@@ -92,12 +96,11 @@ public class Duke extends Application {
 
         Label welcomeLabel = new Label(ui.showWelcomeMessage());
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeLabel, new ImageView(duke)));
-        Label helpLabel = new Label(helpPage.show());
+        Label helpLabel = new Label(HelpPage.show());
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(helpLabel, new ImageView(duke)));
 
         //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
-//        stage.setResizable();
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
 
@@ -122,7 +125,7 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
 
-        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         //Step 3. Add functionality to handle user input.

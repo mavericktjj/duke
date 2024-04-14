@@ -25,6 +25,9 @@ public class Task {
         this.isDone = true;
     }
 
+    public void unmarkAsDone() {
+        this.isDone = false;
+    }
 
     /**
      * Returns a string representation of the Task object.
