@@ -1,8 +1,0 @@
-T|task1|false
-E|audit|false|2024-04-16T00:00|2024-05-16T00:00
-D|assignment7|false|2020-12-19T16:00
-D|assignment5|false|2022-05-20T23:59
-D|assignment2|false|2023-02-28T00:00
-D|assignment1|false|2024-03-15T16:00
-D|assignment6|false|2024-05-13T00:00
-E|dinner|false|2020-02-19T18:00|2020-02-19T21:00

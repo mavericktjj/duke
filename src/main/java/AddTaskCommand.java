@@ -19,7 +19,6 @@ public class AddTaskCommand implements Command {
      * @param taskList The task list to which the task will be added.
      * @param ui       The user interface to display messages.
      * @param storage  The storage to save the updated task list.
-     * @return
      */
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         assert task.description != null : "Task description must not be null";

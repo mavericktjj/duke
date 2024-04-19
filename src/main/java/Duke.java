@@ -18,7 +18,7 @@ public class Duke extends Application {
     final TaskList taskList;
     final Storage storage;
 
-    final String filePath = "C:\\Users\\Admin\\Documents\\GitHub\\duke\\src\\main\\java\\data\\tasks.txt";
+    final String filePath = "main\\java\\data\\tasks.txt";
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;

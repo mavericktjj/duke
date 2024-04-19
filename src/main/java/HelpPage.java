@@ -9,7 +9,7 @@ public class HelpPage {
                 "- todo <description>: Add a new todo task\n" +
                 "- event <description> /from <startDateTime> /to <endDateTime>: Add a new event task\n" +
                 "- deadline <description> /by <dueDateTime>: Add a new deadline task\n" +
-                "- list: List all tasks\n || list<TaskType>" +
+                "- list: List all tasks\n OR list<TaskType>" +
                 "- find <description> or <date>: find tasks that contains the description given or tasks that occurs in range of date given\n" +
                 "- mark <taskNumber>: Mark a task as done\n" +
                 "- unmark <taskNumber>: Unmark a task as done\n" +
