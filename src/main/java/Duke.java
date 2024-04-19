@@ -12,14 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.nio.file.Paths;
+
 
 public class Duke extends Application {
     final Ui ui;
     final TaskList taskList;
     final Storage storage;
 
-    final String filePath = "main\\java\\data\\tasks.txt";
 
+    final String filePath = "src\\main\\java\\data\\tasks.txt";
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;

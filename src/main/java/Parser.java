@@ -22,7 +22,7 @@ public class Parser {
             switch (commandWord) {
                 case "find":
                     try {
-                        LocalDateTime date = parseDateTime(tokens[1]);
+                        LocalDate date = parseDateTime(tokens[1]).toLocalDate();
                         return new FindCommand(date);
                     } catch (DateTimeParseException e1) {
                         return new FindCommand(argument);
